@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Node 1 - ShadowMarket</title>
+    <style>
+        body {
+            margin: 0;
+            background: #010101;
+            color: #00ffcc;
+            font-family: monospace;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            text-shadow: 0 0 15px #00ffcc;
+            animation: flicker 2s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+
+            51% { content: "\76"; }
+            52% { content: "\69"; }
+            53% { content: "\65"; }
+            54% { content: "\77"; }
+
+            55% { content: "\2e"; }
+            56% { content: "\68"; }
+            57% { content: "\74"; }
+            58% { content: "\6d"; }
+            59% { content: "\6c"; }
+        }   
+
+        .hidden {
+            color: #010101;
+            position: absolute;
+            left: -9999px;
+        }
+    </style>
+</head>
+<body>
+    <h1>NODE 1 - SHADOW MARKET</h1>
+</body>
+</html>

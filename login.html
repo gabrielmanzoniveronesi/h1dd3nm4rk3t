@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Access Node</title>
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            color: #00ffcc;
+            font-family: monospace;
+            overflow: hidden;
+        }
+
+        .terminal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #00ffcc;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.85);
+            box-shadow: 0 0 30px #00ffcc;
+            width: 300px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+            animation: flicker 2s infinite;
+        }
+
+        input {
+            width: 100%;
+            background: black;
+            border: none;
+            border-bottom: 1px solid #00ffcc;
+            color: #00ffcc;
+            padding: 10px;
+            margin: 15px 0;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: 1px solid #00ffcc;
+            color: #00ffcc;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #00ffcc;
+            color: black;
+            box-shadow: 0 0 20px #00ffcc;
+        }
+
+        .output {
+            margin-top: 15px;
+            font-size: 13px;
+            color: lime;
+            height: 20px;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix"></canvas>
+
+    <div class="terminal">
+        <div class="title">ACCESS NODE</div>
+        <input type="text" id="user" placeholder="username">
+        <input type="password" id="pass" placeholder="password">
+        <button onclick="login()">ENTER</button>
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        
+        var c = document.getElementById("matrix");
+        var ctx = c.getContext("2d");
+        c.height = window.innerHeight;
+        c.width = window.innerWidth;
+
+        var letters = "01".split("");
+        var font_size = 14;
+        var columns = c.width / font_size;
+        var drops = [];
+
+        for (var x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = "rgba(0,0,0,0.05)";
+            ctx.fillRect(0, 0, c.width, c.height);
+
+            ctx.fillStyle = "#00ffcc";
+            ctx.font = font_size + "px monospace";
+
+            for (var i = 0; i < drops.length; i++) {
+                var text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * font_size, drops[i] * font_size);
+
+                if (drops[i] * font_size > c.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 33);
+
+       
+        function login() {
+            let user = document.getElementById("user").value;
+            let pass = document.getElementById("pass").value;
+            let output = document.getElementById("output");
+
+            output.innerHTML = "checking credentials...";
+
+            setTimeout(() => {
+                if (user === "buyer01" && pass === "shadow123") {
+                    output.innerHTML = "ACCESS GRANTED";
+                    output.style.color = "lime";
+                    setTimeout(() => {
+                        window.location.href = "members.html";
+                    }, 1000);
+                } else {
+                    output.innerHTML = "ACCESS DENIED";
+                    output.style.color = "red";
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

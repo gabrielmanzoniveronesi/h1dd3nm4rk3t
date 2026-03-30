@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ShadowMarket</title>
+<style>
+
+body {
+    margin: 0;
+    background: radial-gradient(circle at center, #050505, #000000);
+    font-family: 'Courier New', monospace;
+    color: #00fff7;
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0,255,255,0.05),
+        rgba(0,255,255,0.05) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+}
+
+/* Titolo glitch */
+.glitch {
+    font-size: 80px;
+    text-align: center;
+    margin-top: 100px;
+    position: relative;
+    animation: flicker 2s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+    content: "SHADOW MARKET";
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.glitch::before {
+    color: red;
+    animation: glitchTop 1s infinite;
+}
+
+.glitch::after {
+    color: blue;
+    animation: glitchBottom 1.2s infinite;
+}
+
+/* Animazioni glitch e flicker */
+@keyframes glitchTop {
+    0% { transform: translate(2px, -2px); }
+    50% { transform: translate(-2px, 2px); }
+    100% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitchBottom {
+    0% { transform: translate(-2px, 2px); }
+    50% { transform: translate(2px, -2px); }
+    100% { transform: translate(-2px, 2px); }
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* Contenitore pulsante */
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Pulsante enter */
+.btn {
+    display: inline-block;
+    padding: 15px 40px;
+    border: 2px solid #00fff7;
+    color: #00fff7;
+    text-decoration: none;
+    font-size: 20px;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    color: black;
+    background: #00fff7;
+    box-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7;
+}
+
+
+.lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.line {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: rgba(0,255,255,0.2);
+    animation: move 5s linear infinite;
+}
+
+.line:nth-child(1) { left: 20%; animation-delay: 0s; }
+.line:nth-child(2) { left: 40%; animation-delay: 1s; }
+.line:nth-child(3) { left: 60%; animation-delay: 2s; }
+.line:nth-child(4) { left: 80%; animation-delay: 3s; }
+
+@keyframes move {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+
+.subtitle {
+    text-align: center;
+    margin-top: 20px;
+    color: #ff00ff;
+    animation: flicker 3s infinite;
+}
+</style>
+</head>
+<body>
+
+
+<div class="lines">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+</div>
+
+
+<h1 class="glitch">SHADOW MARKET</h1>
+<p class="subtitle">unauthorized access required</p>
+
+
+<div class="container">
+    <a href="login.html" class="btn">ENTER THE VOID</a>
+</div>
+
+</body>
+</html>
